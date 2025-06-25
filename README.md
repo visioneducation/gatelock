@@ -5,21 +5,30 @@ Gatelock is a lightweight Role-Based Access Control (RBAC) library for JavaScrip
 ## Usage
 
 ```typescript
-import { PermissionChecker } from "gatelock";
+import { PermissionChecker } from "./gatelock";
 
-const mySubjects = ["user", "service"] as const;
-const myResources = ["items", "accounts"] as const;
+const appSubjects = ["student", "instructor"] as const;
+const appResources = ["students", "orders", "chats", "docs"] as const;
 
-const grantedPermissions: string[] = ["user/items.r", "service/accounts.c"];
+const studentGrantedPermissions: string[] = [
+  "student/docs.r", // Read any document
+  "student/orders.c", // Create new orders
+  "student/orders.u?id=101", // Update specific order '101'
+  "student/chats.r?roomId=34", // Read specific chat room '34'
+];
 
 const checker = new PermissionChecker(
-  grantedPermissions,
-  mySubjects,
-  myResources,
+  studentGrantedPermissions,
+  appSubjects,
+  appResources,
 );
 
-console.log("Can user read items?", checker.can("user/items.r")); // true
-console.log("Can user create items?", checker.can("user/items.c")); // false
+checker.can("student/docs.r"); // Output: true
+checker.can("student/orders.c"); // Output: true
+checker.can("student/orders.u?id=101"); // Output: true
+checker.can("student/orders.u?id=202"); // Output: false
+checker.can("student/chats.r?roomId=34"); // Output: true
+checker.can("student/chats.r?roomId=183"); // Output: false
 ```
 
 ## License
