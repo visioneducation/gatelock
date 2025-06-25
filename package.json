@@ -1,0 +1,20 @@
+{
+    "name": "gatelock",
+    "version": "1.0.0",
+    "main": "dist/gatelock.js",
+    "types": "dist/gatelock.d.ts",
+    "files": [
+        "dist"
+    ],
+    "author": "Vision Education",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "test": "node --loader tsx --test test.ts",
+        "prepare": "npm run build"
+    },
+    "devDependencies": {
+        "tsx": "^4.20.3",
+        "typescript": "^5.8.3"
+    }
+}
