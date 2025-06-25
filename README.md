@@ -23,12 +23,12 @@ const checker = new PermissionChecker(
   appResources,
 );
 
-checker.can("student/docs.r"); // Output: true
-checker.can("student/orders.c"); // Output: true
-checker.can("student/orders.u?id=101"); // Output: true
-checker.can("student/orders.u?id=202"); // Output: false
-checker.can("student/chats.r?roomId=34"); // Output: true
-checker.can("student/chats.r?roomId=183"); // Output: false
+checker.can("student/docs.r"); // true
+checker.can("student/orders.c"); // true
+checker.can("student/orders.u?id=101"); // true
+checker.can("student/orders.u?id=202"); // false
+checker.can("student/chats.r?roomId=34"); // true
+checker.can("student/chats.r?roomId=183"); // false
 ```
 
 ## License
